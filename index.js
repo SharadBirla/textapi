@@ -1,7 +1,7 @@
-const express = require('express')
-const mongoose = require('mongoose');
-const authRoute = require('./routes/auth.route')
-const env= require("dotenv");
+import express from 'express';
+import mongoose from 'mongoose'
+import * as authRoute from './routes/auth.route'
+import * as env from  "dotenv"
 const app = express()
 
 //middleware
