@@ -17,6 +17,6 @@ mongoose.connect(process.env.CONNECTION_STRING)
     console.log("Connectd");
     app.listen(process.env.SERVER_PORT)
   }
-);x
+);
 
   
