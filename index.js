@@ -1,21 +1,25 @@
 import express from 'express';
 import mongoose from 'mongoose'
 import authRouter from './routes/auth.route.js'
+import bodyParser from 'body-parser';
+import cors from "cors"
 import * as env from  "dotenv"
 const app = express()
 
 //middleware
-app.use(express.json);
-app.use(express.urlencoded({extended : false}))
 env.config();
+app.use(cors());
+app.use(bodyParser.json())
+app.use(express.urlencoded({extended : false}))
 
 //routes
 app.use("/api/auth",authRouter);
 
 mongoose.connect(process.env.CONNECTION_STRING)
   .then(() => {
-    console.log("Connectd");
-    app.listen(process.env.SERVER_PORT)
+    debugger;
+  console.log("Connectd");
+  app.listen(process.env.SERVER_PORT)
   }
 );
 
