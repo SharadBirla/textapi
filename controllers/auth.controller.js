@@ -1,13 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/user.model';
+import User from '../Models/user.model.js';
 
-const auth = async (req, res) => {
-
+export const auth = async (req, res) => {
 }
-
-module.exports = { auth, registerUser };
-
 
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
