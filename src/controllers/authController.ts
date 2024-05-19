@@ -1,12 +1,16 @@
+import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../Models/user.model.js';
+import User from '../models/userModel';
 
-export const auth = async (req, res) => {
+export const auth = async (req:Request, res:Response) => {
 }
 
-export const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+export const registerUser = async (req:Request, res:Response) => {
+  const { name, email, password }:{
+    name :string,
+    email:string,
+    password:string
+  } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -20,12 +24,9 @@ export const registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
-
-
     await user.save();
-    
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+    console.error(err);
+    res.status(500).send(err);
   }
 };

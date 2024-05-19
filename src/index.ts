@@ -1,10 +1,10 @@
-import express from 'express';
+import express ,{Application}from 'express';
 import mongoose from 'mongoose'
-import authRouter from './routes/auth.route.js'
+import authRouter from './routes/authRoute'
 import bodyParser from 'body-parser';
 import cors from "cors"
 import * as env from  "dotenv"
-const app = express()
+const app:Application = express()
 
 //middleware
 env.config();
@@ -15,10 +15,15 @@ app.use(express.urlencoded({extended : false}))
 //routes
 app.use("/api/auth",authRouter);
 
-mongoose.connect(process.env.CONNECTION_STRING)
+// enviourment setup
+var connectionString :string = process.env.CONNECTION_STRING as string;
+
+
+mongoose.connect(connectionString)
   .then(() => {
     debugger;
   console.log("Connectd");
+
   app.listen(process.env.SERVER_PORT)
   }
 );
