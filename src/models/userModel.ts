@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const UserSchema = mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     username: { type: String, require: [true, "Please enter user name"] },
     email: { type: String, require: [true, "Please enter email"] },
